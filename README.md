@@ -1,6 +1,6 @@
 <div style="text-align: justify;">
 A special quasirandom structure (SQS) is a mathematical model to generate structures for disordered alloys. They exhibit certain statistical properties similar to those of a randomly generated alloy but with some underlying regularity or pattern. Conventionally it's quite difficult to estimate properties from a small number of atoms due to the very large number of configurations in which atoms can be arranged. The SQS, however, can mimic the disordered behavior in a single configuration in a small number of atoms (~100 atoms for five components). SQSs are often used to model disordered alloys because they can provide a good approximation of real alloys while being computationally less expensive to simulate than truly random structures. Apart from this, it can also capture the effect of the local environment and hence can be used to study local lattice distortions in multi-principal element alloys.
-</div>
+
 <p>
 <p>
 The following tutorial covers the basics of generating SQS structures using the Alloy Theoretic Automated Toolkit (ATAT).<br>
@@ -104,3 +104,5 @@ This will create a file `bestsqs.out` containing the most disordered structure a
 
 ## Step 5:
 The structure generated can now be used for the DFT run. However, before this, it needs to be converted, which can be read in the DFT software; for example, for VASP, we need the structure file in POSCAR format. For this, I have written a small tool that converts the bestsqs.out to POSCAR. Here is the [link](https://github.com/albert-hzbn/sqs_to_poscar) for the same. Don't forget to scale the lattice parameters close to the alloy before calculation as the lattice parameter is considered in the above example as 1. 
+
+</div>

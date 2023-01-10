@@ -9,19 +9,20 @@ The following tutorial covers the basics of generating SQS structures using the 
 ## Step 1:
 Create the smallest unit cell and name it as `rndstr.in` . Its format should be of the follwing form
 
-
-[a] [b] [c] [alpha] [beta] [gamma] <br>
+<code>[a] [b] [c] [alpha] [beta] [gamma] <br> </code>
 or as: <br>
+<code>
 [ax] [ay] [az] <br>
 [bx] [by] [bz] <br>
 [cx] [cy] [cz] <br>
+</code>
 Then the lattice vectors u,v,w are listed, expressed in the coordinate system just defined: <br>
-[ua] [ub] [uc] <br>
+<code>[ua] [ub] [uc] <br>
 [va] [vb] [vc] <br>
-[wa] [web] [wc] <br>
+[wa] [web] [wc] <br></code>
 Finally, atom positions and types are given, expressed in the same coordinate system as the lattice vectors: <br>
-[atom1a] [atom1b] [atom1c] [atomtype11]=[occupation11],[atomtype12]=[occupation12],... <br>
-[atom2a] [atom2b] [atom2c] [atomtype21]=[occupation21],[atomtype22]=[occupation22],.. <br>
+<code>[atom1a] [atom1b] [atom1c] [atomtype11]=[occupation11],[atomtype12]=[occupation12],... <br>
+[atom2a] [atom2b] [atom2c] [atomtype21]=[occupation21],[atomtype22]=[occupation22],.. <br></code>
 
 
 

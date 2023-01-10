@@ -27,8 +27,7 @@ Finally, atom positions and types are given, expressed in the same coordinate sy
 
 An example of the same for FCC structure for binary alloy considering lattice parameter as one and tacking fraction of Fe and Mn as 0.96875 and 0.03125, respectively. <br>
 
-<code>
-1.0 1.0 1.0 90 90 90 <br>
+<code>1.0 1.0 1.0 90 90 90 <br>
 0.5 0.5 -0.5 <br>
 0.5 0.5 0.5 <br>
 0.5 -0.5 0.5 <br>
@@ -41,8 +40,7 @@ An example of the same for FCC structure for binary alloy considering lattice pa
 ## Step 2:
 Then we need to generate the cluster information. For this we can use the "CORRelation DUMPer" command `corrdump`. It takes `rndstr.in` as an input which can be specified as `-l=rndstr.in`. Cluster information from pairs triplets... upto sextuplet can be generated using `-2 -3` ... upto `-6`, and for each cluster maximum distance between two points needs to be specified, for example, by using `-2=1.1`. Here `2` denotes the pair cluster while 1.1 denotes the maximun neighbour distance is 1.1 which means that if in the `rndstr.in` the lattice is specified as FCC and lattice parameter as 1, it will consider FCC first and second nearest neighbor distance ie. 0.707 and 1.0 respectively, as 1.1 is the maximum neighbor distance. Usually, for most of the alloys, up to `-4` is sufficient for most calculations. Basic usage of the command is given below. <br>
 
-<code>
-corrdump -l=rndstr.in -ro -noe -nop -clus -2=1.1 -3=1.1 -4=1.1
+<code>corrdump -l=rndstr.in -ro -noe -nop -clus -2=1.1 -3=1.1 -4=1.1
 </code>
 <br>
 
@@ -54,8 +52,7 @@ The above example shows the generation of cluster taking `rndstr.in` as input. `
 ## Step 3:
 For generating SQS of specific size and shape, we need to create `sqscell.out`. The format for this is given below <br>
 
-<code>
-[No. of structures] <br>
+<code>[No. of structures] <br>
 <br>
 [str1_a1] [str1_a2] [str1_a3] <br>
 [str1_b1] [str1_b2] [str1_b3] <br>
@@ -70,8 +67,7 @@ For generating SQS of specific size and shape, we need to create `sqscell.out`. 
 
 Here the first column gives the number of structures. For the single phase, it will be 1, while for multiphase, it will be >1. The next three lines give the transformation matrix for structure 1; the further three lines give the same for structure 2, and so on. An example of a single FCC phase is given below, which creates the supercell of size 4x5x2 using this transformation. 
 
-<code>
-1 <br>
+<code>1 <br>
 <br>
 4 0 0<br>
 0 5 0<br>
@@ -84,24 +80,21 @@ Here the first column gives the number of structures. For the single phase, it w
 ## Step 4:
  The last step is the generation of SQS, which is carried out using `mcsqs` command. This generates the file `bestsqs.out` containing the structure information and the `bestcorr.out` containing information about the correlation function, which can be used to judge how much disordering is present in the structure. A simple usage of the command is given below.
 
-<code>
-mcsqs -rc
+<code>mcsqs -rc
 </code>
 
 Here `-rc` tells the command to read supercells from file `sqscell.out`. 
 
 Usually, SQS generation takes a fairly large amount of time. In order to speed up its generation, several instances can be run using `-ip=[integer]`. An example of the same is given below.
 
-<code>
-mcsqs -RC -ip=1 <br>
+<code>mcsqs -RC -ip=1 <br>
 mcsqs -RC -ip=2 <br>
 ...
 </code>
 
 Running the above command gives several bestsqs.out files like `bestsqs1.out`, `bestsqs2.out`... Each structure has a different correlation function given in `bestcorr1.out`, `bestcorr2.out`... In order the select the best structure among we can use
 
-<code>
-mcsqs -best
+<code>mcsqs -best
 </code>
 <br>
 

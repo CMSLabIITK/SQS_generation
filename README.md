@@ -103,6 +103,6 @@ This will create a file `bestsqs.out` containing the most disordered structure a
 <br>
 
 ## Step 5:
-The structure generated can now be used for the DFT run. However, before this, it needs to be converted, which can be read in the DFT software; for example, for VASP, we need the structure file in POSCAR format. For this, I have written a small tool that converts the bestsqs.out to POSCAR. Here is the [link](https://github.com/albert-hzbn/sqs_to_poscar) for the same. Don't forget to scale the lattice parameters close to the alloy before calculation as the lattice parameter is considered in the above example as 1. 
+The structure generated can now be used for the DFT run. However, before this, it needs to be converted, which can be read in the DFT software; for example, for VASP, we need the structure file in POSCAR format. For this, I have written a small tool that converts the bestsqs.out to POSCAR. Here is the <a href="https://github.com/albert-hzbn/sqs_to_poscar" target="_blank">link</a> for the same. Don't forget to scale the lattice parameters close to the alloy before calculation as the lattice parameter is considered in the above example as 1. 
 
 </div>

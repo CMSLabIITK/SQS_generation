@@ -72,8 +72,7 @@ For generating SQS of specific size and shape, we need to create `sqscell.out`. 
 [str2_c1] [str2_c2] [str2_c3] 
 .... 
 ```
-
-Here the first row takes the number of structures and the rows after them specifies the transformation matrix which will be applied to the unit cell considered earlier. For the single phase, it will be 1, while for multiphase, it will be >1. The next three lines give the transformation matrix for structure 1; the further three lines give the same for structure 2, and so on. An example of a single FCC phase is given below, which creates the supercell of size 4x5x2 using this transformation. 
+In this format, the first row specifies the number of structures in the system. The following rows contain the transformation matrices for each structure. Each matrix is represented by 3 rows, with 3 values in each row, [str1_a1] [str1_a2] [str1_a3], [str1_b1] [str1_b2] [str1_b3], [str1_c1] [str1_c2] [str1_c3] in the first case. These matrices are used to create supercells of different sizes for each structure. An example of a single FCC phase is given below, which creates the supercell of size 4x5x2 using this transformation. 
 
 ```
 1 

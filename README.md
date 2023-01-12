@@ -1,6 +1,6 @@
 <p align="justify">
 A special quasirandom structure (SQS) is a mathematical model to generate structures for disordered alloys. They exhibit certain statistical properties similar to those of a randomly generated alloy but with some underlying regularity or pattern. The SQS can mimic the disordered behavior in a single configuration in a small number of atoms (~100 atoms for five components). SQSs are often used to model disordered alloys because they can provide a good approximation of real alloys while being computationally less expensive to simulate than truly random structures. Apart from this, it can also capture the effect of the local environment and hence can be used to study local lattice distortions in multi-principal element alloys.
-
+</p>
 
 The following tutorial covers the basics of generating SQS structures using the Alloy Theoretic Automated Toolkit (ATAT).<br>
 
@@ -12,13 +12,14 @@ First we need to specify the shape of the cell which can be done by:
 ```
 [a] [b] [c] [alpha] [beta] [gamma] 
 ```
-or as
+Here a,b,c are length, breadth and height of cell while the alpha,beta and gamma defines the angles between them. 
+Another way we can define cell shape by using unit cell cell vectors as
 ```
 [ax] [ay] [az]
 [bx] [by] [bz] 
 [cx] [cy] [cz] 
 ```
-Then the lattice vectors u,v,w are listed, expressed in the coordinate system just defined:
+Then we need to specify the lattice vectors u,v,w of the unit cell which are expressed as:
 ```
 [ua] [ub] [uc] 
 [va] [vb] [vc] 
@@ -115,5 +116,3 @@ This will create a file `bestsqs.out` containing the most disordered structure a
 
 ## Step 5:
 The structure generated can now be used for the DFT run. However, before this, it needs to be converted, which can be read in the DFT software; for example, for VASP, we need to convert this in the POSCAR format. For this, I have written a small tool that converts the bestsqs.out to POSCAR. Here is the <a href="https://github.com/albert-hzbn/sqs_to_poscar" target="_blank">link</a> for the same. Don't forget to scale the lattice parameters close to the alloy before calculation as the lattice parameter is considered in the above example as 1. 
-
-</p>

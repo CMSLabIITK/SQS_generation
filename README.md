@@ -13,7 +13,7 @@ First we need to specify the shape of the cell which can be done by:
 [a] [b] [c] [alpha] [beta] [gamma] 
 ```
 Here a,b,c are length, breadth and height of cell while the alpha,beta and gamma defines the angles between them. 
-Another way we can define cell shape by using unit cell cell vectors as
+Another way we can define cell shape by using unit cell vectors as
 ```
 [ax] [ay] [az]
 [bx] [by] [bz] 

@@ -51,7 +51,7 @@ The CORRelation DUMPer (corrdump) command is used to generate cluster informatio
 
 For example, if the lattice structure is FCC and the lattice parameter is 1, and the maximum distance between two points in the cluster is specified as 1.1, then the command will only consider the first and second nearest neighbor distances (0.707 and 1.0 respectively) as valid distances within the cluster when generating the cluster information.
 
-It is important to note that the maximum distance specified should be larger than the distance between first nearest neighbours and smaller than the distance between second nearest neighbours for the respective lattice For most alloy calculations, clusters up to quadruplet and distance up to the third nearest neighbor are sufficient.  <br>
+For most alloy calculations, clusters up to quadruplet and distance up to the third nearest neighbor are sufficient.  <br>
 
 <code>corrdump -l=rndstr.in -ro -noe -nop -clus -2=1.1 -3=1.1 -4=1.1 </code>
 <br>

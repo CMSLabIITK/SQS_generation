@@ -6,14 +6,14 @@ The following tutorial covers the basics of generating SQS structures using the 
 
 
 ## Step 1:
-Create the smallest unit cell and name it as `rndstr.in` . Its format should be of the following form
+Create the smallest unit cell and name it as `rndstr.in` . Its format is explained below:
 
-First we need to specify the shape of the cell which can be done by:
+First we need to specify the shape of the cell, this can be done by:
 ```
 [a] [b] [c] [alpha] [beta] [gamma] 
 ```
-Here a,b,c are length, breadth and height of cell while the alpha,beta and gamma defines the angles between them. 
-Another way we can define cell shape by using unit cell vectors as
+Here a,b,c are length, breadth and height of cell while the alpha, beta and gamma defines the angles between them. 
+Another way we can define cell shape is by using unit cell vectors as
 ```
 [ax] [ay] [az]
 [bx] [by] [bz] 
@@ -25,7 +25,7 @@ Then we need to specify the lattice vectors u,v,w of the unit cell which are exp
 [va] [vb] [vc] 
 [wa] [wb] [wc]
 ```
-Finally, atom positions and types are given, expressed in the same coordinate system as the lattice vectors:
+Finally, atomic positions and types are given, they are expressed in the same coordinate system as the lattice vectors:
 ```
 [atom1a] [atom1b] [atom1c] [atomtype11]=[occupation11],[atomtype12]=[occupation12],... 
 [atom2a] [atom2b] [atom2c] [atomtype21]=[occupation21],[atomtype22]=[occupation22],.. 
@@ -33,7 +33,7 @@ Finally, atom positions and types are given, expressed in the same coordinate sy
 <br>
 <br>
 
-An example of the same for FCC structure for binary alloy considering lattice parameter as one and taking fraction of Fe and Mn as 0.96875 and 0.03125, respectively is shown below. <br>
+An example of FCC structure for binary alloy considering lattice parameter as one and fractional comosition of Fe and Mn as 0.96875 and 0.03125, respectively is shown below. <br>
 
 ```
 1.0 1.0 1.0 90 90 90 
@@ -47,7 +47,11 @@ An example of the same for FCC structure for binary alloy considering lattice pa
 
 
 ## Step 2:
-Then we need to generate the cluster information. For this we can use the "CORRelation DUMPer" command `corrdump`. It takes `rndstr.in` as an input which can be specified as `-l=rndstr.in`. Cluster information from pairs triplets... upto sextuplet can be generated using `-2 -3` ... upto `-6`, and for each cluster, maximum distance between two points needs to be specified. For example, if we use `-2=1.1`, then here `2` denotes the pair cluster while 1.1 denotes the maximun neighbour distance which means that if in the `rndstr.in` the lattice is specified as FCC and lattice parameter as 1, it will consider FCC first and second nearest neighbor distance ie. 0.707 and 1.0 respectively, as 1.1 is the maximum neighbor distance. Usually, for most of the alloys, clusters upto quadruplet(`-4`) and distance upto third nerest neighour is sufficient for most calculations. Basic usage of the command is given below. <br>
+The CORRelation DUMPer (corrdump) command is used to generate cluster information from a given input file, rndstr.in, which specifies the lattice structure and parameters of a material. The input file is specified using the `-l` flag followed by the input file name. The command can generate cluster information for various clusters such as pairs, triplets, quadruplets, and sextuplets by using flags such as `-2`, `-3`, `-4`, and `-6`, respectively. For each cluster, the maximum distance between two points in the cluster can also be specified.
+
+For example, if the lattice structure is FCC and the lattice parameter is 1, and the maximum distance between two points in the cluster is specified as 1.1, then the command will only consider the first and second nearest neighbor distances (0.707 and 1.0 respectively) as valid distances within the cluster when generating the cluster information.
+
+It is important to note that the maximum distance specified should be larger than the distance between first nearest neighbours and smaller than the distance between second nearest neighbours for the respective lattice For most alloy calculations, clusters up to quadruplet and distance up to the third nearest neighbor are sufficient.  <br>
 
 <code>corrdump -l=rndstr.in -ro -noe -nop -clus -2=1.1 -3=1.1 -4=1.1 </code>
 <br>
@@ -86,15 +90,19 @@ In this format, the first row specifies the number of structures in the system. 
 
 
 ## Step 4:
- The last step is the generation of SQS, which is carried out using `mcsqs` command. This generates the file `bestsqs.out` containing the structure information and the `bestcorr.out` containing information about the correlation function. The correlation function can be used to judge how much disordering is present in the structure. A simple usage of the command is given below.
+The last step in the process is the generation of a SQS using the `mcsqs` command. This command generates two output files, `bestsqs.out` and `bestcorr.out`, containing information about the SQS structure and the correlation function, respectively.
+
+The `bestsqs.out` file contains information about the structure of the SQS, including the atomic positions, coordination numbers, and other relevant structural properties. The `bestcorr.out` file, on the other hand, contains information about the correlation function, which can be used to judge how much disorder is present in the structure. The correlation function is a measure of the similarity between the pair distribution function of the SQS and the pair distribution function of the underlying random alloy. A high correlation function value indicates a high degree of order, while a low correlation function value indicates a high degree of disorder.
+
+An simple example is given below:
 
 ```
 mcsqs -rc
 ```
 
-Here `-rc` tells the command to read supercells from file `sqscell.out`. 
+The mcsqs command has an option `-rc` that tells the command to read supercells from file `sqscell.out`.
 
-Usually, SQS generation takes a fairly large amount of time. In order to speed up its generation, several instances can be run using `-ip=[integer]`. An example of the same is given below.
+SQS generation can be a computationally expensive process, and it may take a fairly large amount of time to generate the SQS. In order to speed up the process, the command has an option `-ip=[integer]` which allows to run multiple instances of the mcsqs command at the same time. This option takes an integer as an input, specifying the number of instances that will be run in parallel. An example of how to use this option is:
 
 ```
 mcsqs -rc -ip=1 &
@@ -102,16 +110,22 @@ mcsqs -rc -ip=2 &
 ...
 ```
 
-This above command will create two instances with id 1, 2... and `&` command is used for running it in background. Running the above command gives several bestsqs.out files like `bestsqs1.out`, `bestsqs2.out`... Each structure has a different correlation function given in `bestcorr1.out`, `bestcorr2.out`... In order the select the best structure among them we can use
+Above command creates multiple instances of the `mcsqs` command with different instance IDs (1, 2, etc.) and runs them in the background using the `&` command. This command creates multiple output files, such as `bestsqs1.out`, `bestsqs2.out`, etc., each containing information about a different SQS structure. The correlation function for each structure is given in the corresponding `bestcorr1.out`, `bestcorr2.out`, etc.
+
+To select the best structure among the generated structures we can use the command
 
 ```
 mcsqs -best
 ```
-<br>
 
-This will create a file `bestsqs.out` containing the most disordered structure among the list of generated structures.
+This creates a file called `bestsqs.out` containing the most disordered structure among the list of generated structures. The most disordered structure is generally considered as the best SQS because it has the highest degree of randomness and thus, is more representative of the underlying random alloy. It's also important to note that the criteria of selecting the best SQS can vary depending on the specific use case and the requirements of the calculations. It's recommended to check the correlation function, the number of symmetry inequivalent atom, and other property of the SQS to make a final decision.
+
 <br>
 <br>
 
 ## Step 5:
-The structure generated can now be used for the DFT run. However, before this, it needs to be converted, which can be read in the DFT software; for example, for VASP, we need to convert this in the POSCAR format. For this, I have written a small tool that converts the bestsqs.out to POSCAR. Here is the <a href="https://github.com/albert-hzbn/sqs_to_poscar" target="_blank">link</a> for the same. Don't forget to scale the lattice parameters close to the alloy before calculation as the lattice parameter is considered in the above example as 1. 
+Once the SQS structure has been generated, it can be used for Density Functional Theory (DFT) calculations. However, before performing the DFT calculations, the structure needs to be converted into a format that can be read by the DFT software. For example, if you are using the VASP software, you will need to convert the structure into the POSCAR format.
+
+You can use a small tool that converts the `bestsqs.out` file to `POSCAR` format, such as the one provided in this <a href="https://github.com/albert-hzbn/sqs_to_poscar" target="_blank">link</a>. It's important to note that before using the structure for DFT calculations, you should scale the lattice parameters to match the alloy you are studying. In the example provided above, the lattice parameter is set to 1, so you should scale the lattice parameters to match the alloy's lattice parameter before performing the DFT calculations.
+
+It's also worth noting that, depending on the DFT software, you may need to use different units or conventions for the lattice parameters and the atomic positions. Make sure to check the documentation of the DFT software to ensure that the structure is in the correct format for the calculations.

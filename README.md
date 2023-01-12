@@ -33,7 +33,7 @@ Finally, atomic positions and types are given, they are expressed in the same co
 <br>
 <br>
 
-An example of FCC structure for binary alloy considering lattice parameter as one and fractional comosition of Fe and Mn as 0.96875 and 0.03125, respectively is shown below. <br>
+An example of FCC structure for binary alloy considering lattice parameter as one and fractional composition of Fe and Mn as 0.96875 and 0.03125, respectively is shown below. <br>
 
 ```
 1.0 1.0 1.0 90 90 90 

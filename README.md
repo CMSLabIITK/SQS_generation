@@ -40,7 +40,7 @@ An example of FCC structure for binary alloy considering lattice parameter as on
 0.5 0.5 -0.5 
 0.5 0.5 0.5 
 0.5 -0.5 0.5 
-0.0 0.0 0.0 Fe=0.96875,Mn=0.03125
+0.0 0.0 0.0 Fe=0.5,Mn=0.5
 ```
 <br>
 <br>

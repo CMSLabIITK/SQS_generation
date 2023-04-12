@@ -37,9 +37,9 @@ An example of FCC structure for binary alloy considering lattice parameter as on
 
 ```
 1.0 1.0 1.0 90 90 90 
-0.5 0.5 -0.5 
-0.5 0.5 0.5 
-0.5 -0.5 0.5 
+0.0 0.5 0.5
+0.5 0.0 0.5
+0.5 0.5 0.0
 0.0 0.0 0.0 Fe=0.5,Mn=0.5
 ```
 <br>
@@ -47,21 +47,6 @@ An example of FCC structure for binary alloy considering lattice parameter as on
 
 
 ## Step 2:
-The CORRelation DUMPer (corrdump) command is used to generate cluster information from a given input file, rndstr.in, which specifies the lattice structure and parameters of a material. The input file is specified using the `-l` flag followed by the input file name. The command can generate cluster information for various clusters such as pairs, triplets, quadruplets, and sextuplets by using flags such as `-2`, `-3`, `-4`, and `-6`, respectively. For each cluster, the maximum distance between two points in the cluster can also be specified.
-
-For example, if the lattice structure is FCC and the lattice parameter is 1, and the maximum distance between two points in the cluster is specified as 1.1, then the command will only consider the first and second nearest neighbor distances (0.707 and 1.0 respectively) as valid distances within the cluster when generating the cluster information.
-
-For most alloy calculations, clusters up to quadruplet and distance up to the third nearest neighbor are sufficient.  <br>
-
-<code>corrdump -l=rndstr.in -ro -noe -nop -clus -2=1.1 -3=1.1 -4=1.1 </code>
-<br>
-
-The above example shows the generation of cluster taking `rndstr.in` as input. `-ro` asks them to read occupancies from the file. The `-noe` and `-nop` asks the program not to include empty and point clusters, respectively. The `-clus` command is used to generate the cluster. 
-<br>
-<br>
-
-
-## Step 3:
 For generating SQS of specific size and shape, we need to create `sqscell.out`. The format for this is given below <br>
 
 ```
@@ -87,6 +72,26 @@ In this format, the first row specifies the number of structures in the system. 
 ```
 <br>
 <br>
+
+
+
+
+## Step 3:
+The CORRelation DUMPer (corrdump) command is used to generate cluster information from a given input file, rndstr.in, which specifies the lattice structure and parameters of a material. The input file is specified using the `-l` flag followed by the input file name. The command can generate cluster information for various clusters such as pairs, triplets, quadruplets, and sextuplets by using flags such as `-2`, `-3`, `-4`, and `-6`, respectively. For each cluster, the maximum distance between two points in the cluster can also be specified.
+
+For example, if the lattice structure is FCC and the lattice parameter is 1, and the maximum distance between two points in the cluster is specified as 1.1, then the command will only consider the first and second nearest neighbor distances (0.707 and 1.0 respectively) as valid distances within the cluster when generating the cluster information.
+
+For most alloy calculations, clusters up to quadruplet and distance up to the third nearest neighbor are sufficient.  <br>
+
+<code>corrdump -l=rndstr.in -ro -noe -nop -clus -2=1.1 -3=1.1 -4=1.1 </code>
+<br>
+
+The above example shows the generation of cluster taking `rndstr.in` as input. `-ro` asks them to read occupancies from the file. The `-noe` and `-nop` asks the program not to include empty and point clusters, respectively. The `-clus` command is used to generate the cluster. 
+<br>
+<br>
+
+
+
 
 
 ## Step 4:
